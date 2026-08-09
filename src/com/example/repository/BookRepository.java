@@ -5,14 +5,14 @@ import java.util.*;
 
 public interface BookRepository {
 
-    public void addBook(Book book);
-    public boolean deleteBook(int id);
-    public boolean updateBookTitle(int id, String title);
-    public boolean updateBookPrice(int id, double price);
-    public boolean updateBookDescription(int id, String description);
-    public boolean updateBookQuantity(int id, int quantity);
-    public boolean updateBookPublisher(int id, String publisher);
-    public Book getBookById(int id);
-    public Book getBookByTitle(String title);
-    public List<Book> getAllBooks();
+    void addBook(Book book);
+    boolean deleteBook(int id);
+    boolean updateBookTitle(int id, String title);
+    boolean updateBookPrice(int id, double price);
+    boolean updateBookDescription(int id, String description);
+    boolean updateBookQuantity(int id, int quantity);
+    boolean updateBookPublisher(int id, String publisher);
+    Book getBookById(int id);
+    Book getBookByTitle(String title);
+    List<Book> getAllBooks();
 }

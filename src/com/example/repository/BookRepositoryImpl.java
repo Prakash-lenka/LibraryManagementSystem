@@ -109,7 +109,7 @@ public class BookRepositoryImpl implements BookRepository {
     public Book getBookByTitle(String title){
 
         for(Book book : books){
-            if(book.getTitle() == title){
+            if(book.getTitle().equalsIgnoreCase(title)){
                 return book;
             }
         }
