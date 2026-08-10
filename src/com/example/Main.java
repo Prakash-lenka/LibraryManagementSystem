@@ -1,8 +1,8 @@
 package com.example;
 
 import java.util.*;
-import com.example.entity.Book;
-import com.example.service.*;;
+import com.example.entity.*;
+import com.example.service.*;
 
 public class Main {
 
@@ -21,7 +21,7 @@ public class Main {
             System.out.println("Please choose one of the service from below options and enter the number.");
             System.out.println("1.Book");
             System.out.println("2.User");
-            System.out.println("3.Loan");
+            System.out.println("3.Loan Record");
             System.out.println("4.Exit");
             System.out.print("Enter: ");
 
@@ -217,7 +217,261 @@ public class Main {
 
                     }while(bookChoice!=5);
                     break;
+                case 2:
+                    // **** User ****
+                    System.out.println("Now you're in User tab");
+
+                    UserService userService = new UserServiceImpl();
+                    int userChoice;
+
+                    do{
+                        System.out.println("choose one of the service below.");
+                        System.out.println("1.Add User");
+                        System.out.println("2.Delete User");
+                        System.out.println("3.Update User");
+                        System.out.println("4.View User");
+                        System.out.println("5.User Cart");
+                        System.out.println("6.-> Main page");
+                        System.out.println();
+
+                        System.out.print("Enter User service choice: ");
+                        userChoice = sc.nextInt();
+                        sc.nextLine();
+
+                        switch(userChoice){
+                            case 1:
+                                // **** Add User ****
+                                System.out.print("Id: ");
+                                int id = sc.nextInt();
+                                sc.nextLine();
+
+                                System.out.print("Username: ");
+                                String username = sc.nextLine();
+
+                                System.out.print("Full Name: ");
+                                String fullName = sc.nextLine();
+
+                                System.out.print("Contact No: ");
+                                String contactNo = sc.nextLine();
+
+                                System.out.print("Email: ");
+                                String email = sc.nextLine();
+
+                                System.out.print("Password: ");
+                                String password = sc.nextLine();
+
+                                System.out.print("Role: ");
+                                String role = sc.nextLine();
+
+                                System.out.print("DOB: ");
+                                String dob = sc.nextLine();
+
+                                User user = new User(id, username, fullName, contactNo, email, password, role, dob);
+                                userService.addUser(user);
+                                break;
+                            case 2:
+                                // **** Delete User ****
+                                int deleteChoice;
+                                do{
+                                    System.out.println("choose the below deleting options");
+                                    System.out.println("1.Delete by Id.");
+                                    System.out.println("2.Delete by Username.");
+                                    System.out.println("3.-> go back");
+                                    System.out.println();
+
+                                    System.out.print("Enter user delete choice: ");
+                                    deleteChoice = sc.nextInt();
+                                    sc.nextLine();
+
+                                    switch (deleteChoice) {
+                                        case 1:
+                                            // **** Delete User by Id ****
+                                            System.out.print("Id: ");
+                                            userService.deleteUserbyId(sc.nextInt());
+                                            break;
+                                        case 2:
+                                            // **** Delete User by Username ****
+                                            System.out.print("Username: ");
+                                            userService.deleteUserbyUsername(sc.nextLine());
+                                            break;
+                                        case 3:
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice. Try again!");
+                                            break;
+                                    }
+                                }while(deleteChoice!=3);
+                                break;
+                            case 3:
+                                // **** Update User ****
+                                System.out.print("Id: ");
+                                int uid = sc.nextInt();
+                                sc.nextLine();
+
+                                System.out.print("Username: ");
+                                String uusername = sc.nextLine();
+
+                                System.out.print("Full Name: ");
+                                String ufullName = sc.nextLine();
+
+                                System.out.print("Contact No: ");
+                                String ucontactNo = sc.nextLine();
+
+                                System.out.print("Email: ");
+                                String uemail = sc.nextLine();
+
+                                System.out.print("Password: ");
+                                String upassword = sc.nextLine();
+
+                                System.out.print("Role: ");
+                                String urole = sc.nextLine();
+
+                                System.out.print("DOB: ");
+                                String udob = sc.nextLine();
+
+                                User updateUser = new User(uid, uusername, ufullName, ucontactNo, uemail, upassword, urole, udob);
+                                userService.updateUser(updateUser);
+                                break;
+                            case 4:
+                                // **** View User ****
+                                int viewChoice;
+                                do{
+                                    System.out.println("choose the below viewing options");
+                                    System.out.println("1.View by Id.");
+                                    System.out.println("2.View by Username.");
+                                    System.out.println("3.View by Email.");
+                                    System.out.println("4.View all Users.");
+                                    System.out.println("5.-> go back");
+                                    System.out.println();
+
+                                    System.out.print("Enter user view choice: ");
+                                    viewChoice = sc.nextInt();
+                                    sc.nextLine();
+
+                                    switch (viewChoice) {
+                                        case 1:
+                                            // **** View User by Id ****
+                                            System.out.print("Id: ");
+                                            userService.findById(sc.nextInt());
+                                            break;
+                                        case 2:
+                                            // **** View User by Username ****
+                                            System.out.print("Username: ");
+                                            userService.findByUsername(sc.nextLine());
+                                            break;
+                                        case 3:
+                                            // **** View User by Email ****
+                                            System.out.print("Email: ");
+                                            userService.findByEmail(sc.nextLine());
+                                            break;
+                                        case 4:
+                                            // **** View all Users ****
+                                            userService.findAll();
+                                            break;
+                                        case 5:
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice. Try again!");
+                                            break;
+                                    }
+                                }while(viewChoice!=5);
+                                break;
+                            case 5:
+                                // **** User Cart ****
+                                int cartChoice;
+                                do{
+                                    System.out.println("choose the below cart options");
+                                    System.out.println("1.Add Book to Cart by Id.");
+                                    System.out.println("2.Add Book to Cart by Username.");
+                                    System.out.println("3.Delete Book from Cart by Id.");
+                                    System.out.println("4.View Cart by Id.");
+                                    System.out.println("5.View Cart by Username.");
+                                    System.out.println("6.-> go back");
+                                    System.out.println();
+
+                                    System.out.print("Enter user cart choice: ");
+                                    cartChoice = sc.nextInt();
+                                    sc.nextLine();
+
+                                    switch (cartChoice) {
+                                        case 1:
+                                            // **** Add Book to Cart by Id ****
+                                            System.out.print("User Id: ");
+                                            int userId = sc.nextInt();
+                                            sc.nextLine();
+
+                                            System.out.print("Book Id: ");
+                                            int bookId = sc.nextInt();
+                                            sc.nextLine();
+
+                                            System.out.print("Quantity: ");
+                                            int quantity = sc.nextInt();
+                                            sc.nextLine();
+
+                                            userService.addBookToCartById(userId, bookId, quantity);
+                                            break;
+                                        case 2:
+                                            // **** Add Book to Cart by Username ****
+                                            System.out.print("Username: ");
+                                            String username1 = sc.nextLine();
+
+                                            System.out.print("Book Id: ");
+                                            int bookId2 = sc.nextInt();
+                                            sc.nextLine();
+
+                                            System.out.print("Quantity: ");
+                                            int quantity2 = sc.nextInt();
+                                            sc.nextLine();
+
+                                            userService.addBookToCartByUsername(username1, bookId2, quantity2);
+                                            break;
+                                        case 3:
+                                            // **** Delete Book from Cart by Id ****
+                                            System.out.print("User Id: ");
+                                            int userId3 = sc.nextInt();
+                                            sc.nextLine();
+
+                                            System.out.print("Book Id: ");
+                                            int bookId3 = sc.nextInt();
+                                            sc.nextLine();
+
+                                            userService.deleteBookFromCartById(userId3, bookId3);
+                                            break;
+                                        case 4:
+                                            // **** View Cart by Id ****    
+                                            System.out.print("User Id: ");
+                                            int userId4 = sc.nextInt();
+                                            sc.nextLine();
+                                            userService.viewCartById(userId4);
+                                            break;
+                                        case 5:
+                                            // **** View Cart by Username ****
+                                            System.out.print("Username: ");
+                                            String username5 = sc.nextLine();
+                                            userService.viewCartByUsername(username5);
+                                            break;
+                                        case 6:
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice. Try again!");
+                                    }
+                                }while(cartChoice!=6);
+                                break;
+                            case 6:
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Try again!");
+                                break;
+                        }
+                    }while(userChoice!=6);
+                
+                break;
+                case 3:
+                    // **** Loan Record ****
+                    System.out.println("Now you're in Loan Record tab");
+                    break;
                 case 4:
+                    System.out.println("Thank you for using the Library Management System. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Try again!");
@@ -227,5 +481,6 @@ public class Main {
 
 
         }while(choice!=4);
+        sc.close();
     }
 }

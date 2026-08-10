@@ -110,7 +110,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void getAllBooks(){
         List<Book> books = service.getAllBooks();
-
+        if(books.isEmpty()){
+            System.out.println("No books found.");
+            return;
+        }
+        System.out.println("All books: "+books.size()+ " books found.");
         for(Book book : books){
             System.out.println(book.toString());
         }

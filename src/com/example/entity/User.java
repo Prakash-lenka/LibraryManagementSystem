@@ -1,4 +1,6 @@
 package com.example.entity;
+import java.util.*;
+import com.example.entity.Book;
 
 public class User {
 
@@ -10,6 +12,8 @@ public class User {
     private String password;
     private String role;
     private String dob;
+    private List<Book> cart = new ArrayList<>();
+
 
     public User(){}
 
@@ -78,6 +82,10 @@ public class User {
     }
     public void setDob(String dob){
         this.dob = dob;
+    }
+
+    public List<Book> getCart() {
+        return cart;
     }
 
     @Override
