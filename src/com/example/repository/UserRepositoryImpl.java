@@ -2,7 +2,6 @@ package com.example.repository;
 
 import com.example.entity.User;
 import com.example.entity.Book;
-import com.example.repository.BookRepository;
 import java.util.*;
 
 public class UserRepositoryImpl implements UserRepository {
@@ -82,7 +81,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private BookRepository bookRepository = new BookRepositoryImpl();
-    
+
     @Override
     public boolean addBookToCartById(int userId, int bookId, int quantity) {
         User user = findById(userId);

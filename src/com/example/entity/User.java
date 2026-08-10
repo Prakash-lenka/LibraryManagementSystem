@@ -1,6 +1,5 @@
 package com.example.entity;
 import java.util.*;
-import com.example.entity.Book;
 
 public class User {
 
